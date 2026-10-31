@@ -1,0 +1,12 @@
+
+/* Extensión institucional: sigue la paleta original; sin alterar style.css ni app.js. */
+.e2-param-diccionario{margin:12px 0;border:1px solid #56606a;border-radius:5px;padding:9px;background:rgba(25,32,37,.55)}
+.e2-param-diccionario summary{cursor:pointer;color:#f4ce20;font-weight:700;font-size:12px;padding:4px 0}
+.e2-param-buscar{box-sizing:border-box;width:100%;margin:7px 0 9px;padding:8px;border:1px solid #8894a0;border-radius:4px;color:#17212b;background:#fff}
+.e2-param-tabla-wrap{max-height:380px;overflow:auto;overscroll-behavior:contain}
+.e2-param-tabla{border-collapse:collapse;width:100%;min-width:500px;font-size:11px;color:#e9eef2}
+.e2-param-tabla th{position:sticky;top:0;background:#e9c82f;color:#17212b;text-align:left;padding:8px 6px}
+.e2-param-tabla td{padding:7px 6px;border-bottom:1px solid #46505b;vertical-align:top}
+.e2-param-tabla td small{display:block;color:#b9ccd6;font-size:10px;padding-top:4px;line-height:1.3}
+.e2-param-tabla tr:nth-child(even){background:rgba(255,255,255,.05)}
+.e2-radar-selected{color:#d7e4e9;font-size:11px;line-height:1.5;max-height:95px;overflow-y:auto;padding:5px 8px;border-left:2px solid #e2b91b}

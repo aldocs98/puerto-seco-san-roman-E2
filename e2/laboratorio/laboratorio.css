@@ -1,0 +1,50 @@
+#e2labStage,.e2lab,.e2lab *{box-sizing:border-box}
+#e2labStage{position:absolute;inset:0;background:#f5f6f7;color:#1e293b;z-index:625;overflow:auto;font:13px 'Segoe UI',Arial,sans-serif;padding:24px;display:none}
+#e2labStage .lab-title{color:#151d27;font-size:22px;line-height:1.25;margin:3px 0 7px;font-weight:800}
+#e2labStage .lab-muted{color:#617082;font-size:12px;line-height:1.5}
+#e2labStage .lab-kpis{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:11px;margin:17px 0}
+#e2labStage .lab-kpi{background:#fff;border:1px solid #d9dee5;border-top:4px solid #f4bb17;padding:14px;border-radius:7px}
+#e2labStage .lab-kpi b{font-size:22px;color:#192536;display:block;margin:5px 0}
+#e2labStage .lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#e2labStage .lab-panel{background:#fff;border:1px solid #dce1e7;border-radius:8px;padding:15px;min-width:0}
+#e2labStage .lab-panel h3{font-size:14px;color:#213042;margin-bottom:10px}
+#e2labStage .lab-plot{height:345px;min-width:0;width:100%}
+#e2labStage .lab-wide{grid-column:1 / -1}
+#e2labStage .lab-table{width:100%;border-collapse:collapse;font-size:11px;background:#fff;color:#263348}
+#e2labStage .lab-table th{background:#253342;color:#fff;padding:9px;text-align:left}
+#e2labStage .lab-table td{border-bottom:1px solid #e5e8ed;padding:8px;color:#263348}
+#e2labStage .lab-scroll{max-height:300px;overflow:auto}
+#e2labStage .lab-caption{font-size:11px;color:#526275;line-height:1.5;margin-top:8px}
+#e2labStage .lab-legend{font-size:11px;background:#fff6d6;border-left:3px solid #e1ae1a;padding:10px;color:#374151}
+#e2labStage .lab-button,.e2lab-side button{border:1px solid #d1ad25;background:#ffc72c;color:#17202b;font-weight:700;border-radius:5px;padding:9px 12px;cursor:pointer}
+#e2labStage .lab-button:hover,.e2lab-side button:hover{background:#f3b30c}
+.e2lab-side{color:#f4f4f4}
+.e2lab-side h1{color:#f6c900;font-size:19px}
+.e2lab-side label{color:#e7e7e7!important;font-size:11px;letter-spacing:0;font-weight:600;margin:10px 0 5px}
+.e2lab-side select,.e2lab-side input{background:#fff!important;color:#1f2937!important;width:100%;border-radius:5px;border:1px solid #cbd5e1;padding:8px}
+.e2lab-side input[type=range]{padding:0;accent-color:#f4bf20}
+.e2lab-side .e2lab-val{float:right;color:#f6c900;font-weight:bold}
+.e2lab-side .e2lab-small{font-size:11px;line-height:1.55;color:#e4e4e4}
+.e2lab-side .e2lab-note{border-left:3px solid #f6c900;background:#292929;padding:10px;margin:10px 0}
+.e2lab-side .e2lab-controls{max-height:420px;overflow:auto;padding-right:5px}
+.e2lab-side .e2lab-metrics{background:#282828;padding:10px;margin:12px 0;border-radius:6px;color:#fff}
+.e2lab-side .e2lab-metrics b{color:#ffcf2d}
+.e2lab-side details{border-top:1px solid #444;padding:9px 0}
+.e2lab-side summary{cursor:pointer;color:#ffce27}
+#e2labStage .lab-params{display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));gap:5px}
+#e2labStage .lab-params span{font-size:11px;background:#f1f4f6;color:#273648;padding:6px;border-radius:3px;word-break:break-word}
+@media(max-width:1350px){#e2labStage .lab-grid{grid-template-columns:1fr}#e2labStage .lab-kpis{grid-template-columns:repeat(2,1fr)}#e2labStage .lab-wide{grid-column:auto}}
+@media(max-width:700px){#e2labStage{padding:12px}#e2labStage .lab-kpis{grid-template-columns:1fr 1fr}#e2labStage .lab-kpi b{font-size:17px}#e2labStage .lab-params{grid-template-columns:1fr}}
+
+/* V8: legibilidad de distribuciones y comparador de métodos */
+#e2labStage .lab-v8-section{border-top:3px solid #d4a018}
+#e2labStage .lab-v8-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+#e2labStage .lab-v8-chip{background:#fef3c7;color:#755511;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:700}
+#e2labStage .lab-v8-controlbar{display:flex;align-items:end;flex-wrap:wrap;gap:10px;margin:14px 0 6px}
+#e2labStage .lab-v8-controlbar label{display:flex;flex-direction:column;gap:5px;font-size:11px;color:#344357;font-weight:700;flex:1 1 160px}
+#e2labStage .lab-v8-controlbar label:first-child{flex:2 1 275px}
+#e2labStage .lab-v8-controlbar select{background:#fff;color:#253349;font-size:12px;min-height:36px;border:1px solid #c7cfd8;border-radius:5px;padding:6px;width:100%}
+#e2labStage .lab-v8-note{color:#607080}
+#e2labStage #labClusterCompare{overflow:auto;margin-top:8px}
+.e2lab-side #labMethodNote{margin:8px 0 10px;padding:7px;border-left:2px solid #f4bf20}
+@media(max-width:850px){#e2labStage .lab-v8-controlbar{flex-direction:column;align-items:stretch}#e2labStage .lab-v8-controlbar label{width:100%}}

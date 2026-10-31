@@ -1,0 +1,10 @@
+/* Reuse V8 design language: charcoal aside, yellow accent, white analytical panels */
+#e2labStage .lab-panel a{color:#276a9d;text-decoration:underline}
+#e2labStage .lab-panel a:visited{color:#6d3e8e}
+#e2labStage .lab-scroll{max-height:420px;overflow:auto}
+#e2labStage .lab-caption{line-height:1.6}
+.e2lab-side #e2Params small{display:block;color:#cbd5df;padding-bottom:7px}
+.e2lab-side #e2Params input{margin-top:1px}
+.e2lab-side #e2Run,.e2lab-side #e2Reset{width:100%;margin:6px 0}
+.e2lab-side h1{margin:7px 0 10px}
+.e2lab-side #e2Params{max-height:370px}

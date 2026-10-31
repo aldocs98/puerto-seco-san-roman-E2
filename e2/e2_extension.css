@@ -1,0 +1,5 @@
+/* Extensión visual consistente con la interfaz E1 */
+.e2row{padding:10px 0;border-bottom:1px solid #e7e7e2}.e2small{font-size:12px;color:#59636b}.e2num{font-weight:700;color:#1f506d}.e2inputs{display:grid;grid-template-columns:1fr 1fr;gap:8px}.e2inputs label{font-size:11px}.e2inputs input{width:100%;max-width:100%;box-sizing:border-box}.e2badge{background:#f1b92d;padding:2px 7px;font-weight:700;border-radius:3px}.e2well{background:#fff8e3;border:1px solid #e6cc7b;border-radius:4px;padding:10px;margin:10px 0}.e2select{width:100%;padding:5px}.e2metric{font-size:23px;font-weight:800;color:#244b63}
+
+/* V14.1: contraste del texto y cifras sobre tarjetas amarillas claras. */
+.e2well,.e2well *{color:#182b39!important}.e2well a{color:#124b73!important}.e2row{border-bottom-color:#5d6266}.e2row,.e2row b{color:#f2f4f7}.e2small{color:#b7c8d3}.e2num{color:#6fc1f2}
