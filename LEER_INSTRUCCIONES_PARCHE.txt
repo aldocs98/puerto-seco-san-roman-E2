@@ -1,0 +1,29 @@
+PARCHE DE PUBLICACIÓN — WEBGIS E2 JULIACA
+
+Propósito: resolver el límite de 25 MiB por archivo de la subida desde la interfaz web de GitHub.
+
+ARCHIVOS MODIFICADOS
+- index.html (secuenciación de carga del motor)
+- EXPLORADOR_ECONOMICO_E2.html (ídem)
+- e2/laboratorio/motor_e2_data.js (módulo base, ahora pequeño)
+
+ARCHIVOS NUEVOS
+- e2/laboratorio/motor_e2_data_parte_01.js
+- e2/laboratorio/motor_e2_data_parte_02.js
+- e2/laboratorio/motor_e2_data_parte_03.js
+- e2/laboratorio/motor_e2_data_parte_04.js
+
+APLICACIÓN
+A) Repositorio existente: descomprime este ZIP sobre la raíz local del repositorio
+   conservando las carpetas, sobrescribe los tres archivos existentes, añade las
+   cuatro partes, y publica los 7 archivos en GitHub.
+B) Si editas por la web de GitHub, actualiza los dos HTML en la raíz, entra a
+   e2/laboratorio/ y sustituye motor_e2_data.js y sube las cuatro partes.
+C) Si prefieres reemplazar el sitio entero, utiliza WEBGIS_JULIACA_GITHUB_LISTO_25MB.zip
+
+No elimines ningún archivo de mapas ni cambies la ruta de GitHub Pages.
+No cambia: 14 cadenas / 41 perfiles / 16.384 simulaciones, tarifas, parámetros,
+probabilidades Logit ni resultados.
+
+Precaución: el contenido de un GitHub Pages público es accesible a quienes tienen
+la URL, incluyendo los datos de simulación y las capas. No es una publicación cifrada.
