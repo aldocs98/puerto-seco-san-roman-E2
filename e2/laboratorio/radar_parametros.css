@@ -1,0 +1,18 @@
+/* Controlador paramétrico aditivo: no modifica la identidad del WebGIS E1/V8 */
+.e2-radar-panel{border:1px solid #697582;border-top:3px solid #f6be2c;border-radius:8px;background:#202b35;color:#f2f6f9;padding:10px;margin:12px 0}
+.e2-radar-top{display:flex;justify-content:space-between;align-items:center;gap:6px;color:#ffd342;font-size:12px}
+.e2-radar-top span{font-size:10px;font-weight:bold;background:#324250;color:#f9d978;padding:2px 6px;border-radius:4px}
+.e2-radar-help,.e2-radar-foot{font-size:10.5px;line-height:1.5;color:#e1e6eb;margin:7px 0}
+#e2-radar-svg{width:100%;max-width:380px;height:auto;display:block;margin:auto;touch-action:none}
+.e2-radar-axis{display:grid;grid-template-columns:1fr 1fr;gap:8px 7px}
+.e2-axis-line{min-width:0;background:#2d3a46;border:1px solid #455869;border-radius:5px;padding:5px}
+.e2-radar-panel .e2-axis-line label{font-size:10px;color:#dbe4e9;margin:0}
+.e2-axis-line select{width:100%;min-width:0;margin-top:3px;background:#fff;color:#1b2b37;border:1px solid #aab5bf;font-size:10px;padding:3px;border-radius:4px}
+.e2-axis-line output{display:block;margin-top:4px;font-size:10px;color:#ffd94d;word-break:break-word}
+.e2-radar-compare{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:10px 0}
+.e2-radar-compare div{background:#34424f;border-radius:4px;padding:5px;min-width:0}
+.e2-radar-compare small{display:block;font-size:9px;color:#d5dde3}
+.e2-radar-compare strong{font-size:11px;color:#fff;word-wrap:break-word}
+.e2-radar-panel #e2-radar-reset{width:100%;font-size:11px;margin-top:5px}
+#e2labStage .e2v14-views{display:flex;gap:8px;align-items:center;color:#44556d;margin-bottom:8px}
+#e2labStage .e2v14-views select{border:1px solid #b4c2ce;border-radius:5px;background:white;padding:5px;color:#223348}

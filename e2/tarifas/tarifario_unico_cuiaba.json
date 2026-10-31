@@ -1,0 +1,72 @@
+{
+  "proveedor": "Porto Seco Cuiabá",
+  "tipo": "benchmark internacional — no tarifa oficial de Perú",
+  "vigencia_fuente": "2025-10-21",
+  "fecha_estudio": "2026-10-31",
+  "fuentes": {
+    "importacion": "https://portoseco.com/storage/pricetable/176123226268fa458652d23.pdf",
+    "exportacion": "https://portoseco.com/storage/pricetable/176123225168fa457b67030.pdf"
+  },
+  "almacenaje": {
+    "importacion": {
+      "base": "CIF proxy comercial E1",
+      "primer_ciclo_dias": 10,
+      "primer_ciclo_fraccion": 0.001815,
+      "adicional_fraccion": 0.00363,
+      "adicional_dias": 10
+    },
+    "transito": {
+      "base": "CIF proxy comercial E1",
+      "primer_ciclo_dias": 10,
+      "primer_ciclo_fraccion": 0.001815,
+      "adicional_fraccion": 0.00363,
+      "adicional_dias": 10
+    },
+    "exportacion": {
+      "base": "FOB proxy comercial E1",
+      "primer_ciclo_dias": 30,
+      "primer_ciclo_fraccion": 0.001815,
+      "adicional_fraccion": 0.00363,
+      "adicional_dias": 30
+    },
+    "brasil_peru": {
+      "base": "Valor comercial proxy E1; régimen mixto no identificado",
+      "primer_ciclo_dias": 10,
+      "primer_ciclo_fraccion": 0.001815,
+      "adicional_fraccion": 0.00363,
+      "adicional_dias": 10
+    }
+  },
+  "servicios_fijos_brl": {
+    "movimiento_brl_t": 18.52,
+    "pesaje_brl_veh": 120.0,
+    "descarga_brl_evento": 1400.0,
+    "desconsolidacion_brl_BL": 390.0,
+    "inspeccion_brl_BL": 195.0,
+    "documentacion_brl_proceso": 500.0,
+    "handling_brl_mov": 390.0
+  },
+  "servicios_condicionales_no_incluidos_central": {
+    "procedimientos_control_carga": {
+      "base": "CIF",
+      "fraccion": 0.0015,
+      "condicion": "Solo servicio realmente prestado; no forma parte de la canasta principal"
+    },
+    "recargos_especiales": {
+      "dificil_manipulacion": 0.2,
+      "peligrosa_fragil": 0.5,
+      "imo_clases_1_5": 0.9,
+      "imo_clases_6_8_9": 1.0,
+      "condicion": "Sobre factura con almacenaje; no aplicar sin habilitación y clasificación"
+    },
+    "horario_extra": "Coste condicionado no cuantificado"
+  },
+  "criterios": [
+    "Facturación por servicio efectivamente utilizado, no cargo automático a toda la mercancía",
+    "Los porcentajes ad valorem son tasas del referente; el valor CIF/FOB del modelo es un proxy E1, no una declaración validada",
+    "Cargas peligrosas, refrigeradas o ferroviarias no habilitadas no se añaden en el central",
+    "Factor tarifas referencia = 1,00 mantiene las tarifas publicadas; otros valores son sensibilidad",
+    "Recargos especiales y 0,15 % control no se incluyen en central para no atribuir utilización inexistente",
+    "Tarifa de Juliaca no está aprobada por entidad pública"
+  ]
+}

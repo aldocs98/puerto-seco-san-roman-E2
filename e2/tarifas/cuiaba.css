@@ -1,0 +1,7 @@
+.e2-tarifario-unico{border-left:3px solid #e4b832!important;padding-left:10px!important}
+.e2-tarifario-vivo{overflow-x:auto;margin:9px 0 7px}
+.e2-tarifa-tabla{font-size:11px;line-height:1.45;width:100%;border-collapse:collapse;text-align:left}
+.e2-tarifa-tabla th,.e2-tarifa-tabla td{padding:5px 6px;border-bottom:1px solid #d7e1e7}
+.e2-tarifa-tabla th{background:#172a35;color:#fff;white-space:nowrap}
+.e2-tarifa-tabla tr:nth-child(2n){background:#f0f5f7}
+.e2-tarifario-unico a{color:#1978a9;text-decoration:underline}
