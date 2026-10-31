@@ -14,7 +14,11 @@ function side(){
  <label>Ver distribución de</label><select id="e2Metric"><option value="ticket_usd_t">Ticket total (USD/t)</option><option value="ticket_importacion_usd_t">Ticket importación (USD/t)</option><option value="ticket_exportacion_usd_t">Ticket exportación (USD/t)</option><option value="toneladas">Captación (t/año)</option><option value="ingresos_usd">Ingresos brutos (USD/año)</option><option value="fraccion_margen_positivo">Volumen con beneficio usuario ≥ 0</option><option value="brecha_economica_media_usd_t">Ahorro adicional requerido (USD/t)</option></select>
  <label>Filtrar escenarios</label><select id="e2Filter"><option value="all">Todo el universo</option><option value="range">Ticket total entre 18 y 25 USD/t</option><option value="imp">Importación 18–25 USD/t</option><option value="exp">Exportación 18–25 USD/t</option><option value="pos">Beneficio del usuario ≥ 0 en ≥ 50 % de captación</option><option value="econ">Con al menos 1 t económicamente sustentada</option><option value="revenues">Ingresos ≥ US$ 5 millones</option></select>
  <label>Grupo estadístico</label><select id="e2Group"><option value="all">Todos</option><option value="0">Grupo 1</option><option value="1">Grupo 2</option><option value="2">Grupo 3</option></select>
- <div class="e2lab-note"><b>Tarifas Brasil</b><p class="e2lab-small">Importación: CIF y ciclos de 10 días (15 días = 2 ciclos); exportación: FOB y ciclos de 30 días (5 días = 1 ciclo). En importación almacenada puede cobrarse una segunda operación de carga al retirar para consumo. La base de valor E1 no es CIF/FOB acreditado. Servicios opcionales se aplican según familia.</p></div>
+ <div class="e2lab-note e2-tarifario-unico"><b>Referencia tarifaria única: Porto Seco Cuiabá (21/10/2025)</b>
+ <p class="e2lab-small">Benchmark de servicios, no tarifa oficial de Juliaca. El almacenaje ad valorem se calcula con tasas publicadas sobre <b>CIF proxy</b> (importación / tránsito) o <b>FOB proxy</b> (exportación). Los proxies comerciales E1 no equivalen a declaraciones CIF/FOB acreditadas.</p>
+ <div id="e2TarifarioVivo" class="e2-tarifario-vivo" aria-live="polite">Se actualizarán los ciclos al recalcular.</div>
+ <p class="e2lab-small"><b>Aplicación restringida:</b> el 0,15 % de control de carga y los recargos +20 %, +50 %, +90 % y +100 % constan en Cuiabá, <b>pero no forman parte del escenario central</b> sin identificación del servicio o de la mercancía habilitada. La segunda manipulación de importaciones es una hipótesis operacional separada.</p>
+ <p class="e2lab-small"><a href="https://portoseco.com/storage/pricetable/176123226268fa458652d23.pdf" target="_blank" rel="noopener noreferrer">Tarifario importación</a> · <a href="https://portoseco.com/storage/pricetable/176123225168fa457b67030.pdf" target="_blank" rel="noopener noreferrer">Tarifario exportación</a> · <a href="e2/tarifas/tarifario_unico_cuiaba.json" target="_blank" rel="noopener noreferrer">Ficha tarifaria auditable</a></p></div>
  <div class="e2lab-note"><b>Configuraciones operativas</b><p class="e2lab-small">Cada botón modifica varios supuestos visibles; es una sensibilidad, no una predicción contratada.</p><button id="e2PresetDown">Conservador</button> <button id="e2PresetBase">Intermedio</button> <button id="e2PresetUp">Integración operativa</button></div><div id="e2RadarHost"></div><details open><summary>Parámetros editables del motor (${D.variables.length})</summary><div class="e2lab-controls" id="e2Params"></div><button id="e2Run">Recalcular configuración</button><button id="e2Expanded">Ensayar canasta integral ampliada</button><button id="e2Reset">Restaurar valores</button></details>
  <button id="e2Export" style="width:100%">Exportar escenarios filtrados CSV</button><div class="e2lab-note"><b>Lectura del margen</b><p class="e2lab-small">El «margen» es el ahorro monetario neto del usuario de la cadena logística frente a su alternativa: NO es margen de beneficio del transportista ni utilidad del puerto seco. Un valor negativo indica que Juliaca es más caro con estos supuestos. Doce cadenas comparan la misma ruta y tienen ΔCG = 0 (no significa costo logístico cero). El modelo Logit, no calibrado, aún asigna probabilidad a valores negativos: la demanda potencial NO equivale a demanda comercialmente validada.</p></div><div class="e2lab-note"><b>Importante</b><p class="e2lab-small">Los percentiles corresponden a las hipótesis ensayadas y no a frecuencias de contratación observada. Las franjas del E1 representan atractivo logístico, no elegibilidad física. El coeficiente Logit, la segunda manipulación y las frecuencias de servicios siguen sin calibración comercial RP/SP.</p></div></div>`;
 }
@@ -40,7 +44,15 @@ function mkInputs(){
 }
 function readInputs(){const obj={...state.p};document.querySelectorAll('#e2Params input').forEach(el=>{const v=D.variables.find(x=>x.key===el.dataset.key);let n=number(el.value);n=Math.max(v.lo,Math.min(v.hi,n));obj[v.key]=n;});return obj;}
 function setInputs(p){state.p={...p};document.querySelectorAll('#e2Params input').forEach(el=>{el.value=p[el.dataset.key]??D.central[el.dataset.key]});}
+function actualizarTarifario(){
+ const el=document.getElementById('e2TarifarioVivo');if(!el)return;
+ const r=D.tarifas,p=state.p;
+ const tasa=(d,c)=>r.alm_ciclo1_pct+r.alm_ciclo2_pct*(Math.max(1,Math.ceil(d/c))-1);
+ const fila=(nombre,d,c,base)=>`<tr><td>${nombre}</td><td>${fmt(d,0)}</td><td>${Math.max(1,Math.ceil(d/c))}</td><td>${fmt(tasa(d,c)*100,4)} % de ${base}</td></tr>`;
+ el.innerHTML=`<table class="e2-tarifa-tabla"><thead><tr><th>Régimen</th><th>Días</th><th>Ciclos</th><th>Tasa acumulada</th></tr></thead><tbody>${fila('Importación',p.dias_importacion,10,'CIF')}${fila('Tránsito',p.dias_transito,10,'CIF')}${fila('Exportación',p.dias_exportacion,30,'FOB')}</tbody></table><small>Primer ciclo: ${fmt(r.alm_ciclo1_pct*100,4)} %. Cada ciclo posterior: ${fmt(r.alm_ciclo2_pct*100,4)} %. Factor tarifario aplicado al ticket: ${fmt(p.factor_tarifas_referencia,2)}. La facturación por tonelada también depende del valor comercial proxy y de la frecuencia de depósito por familia.</small>`;
+}
 function dashboardSelected(){
+ actualizarTarifario();
  const q=calc(state.p);state.selection=q;
  const a=q.out;
  for(const [id,val,dp] of [['e2Q',a.toneladas,0],['e2R',a.ingresos_usd/1e6,2],['e2T',a.ticket_usd_t,2]])document.getElementById(id).innerText=(id==='e2R'?'US$ ':'')+fmt(val,dp)+(id==='e2R'?' M':id==='e2T'?' USD/t':'');
@@ -116,7 +128,7 @@ let b=document.createElement('button');b.dataset.tab='e2_laboratorio';b.textCont
 b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');mount(false)});
  nav.querySelectorAll('button:not([data-tab="e2_laboratorio"])').forEach(el=>el.addEventListener('click',()=>{let n=document.getElementById('e2labStage');if(n)n.style.display='none';}));
 }
-function radarPreview(p){state.p={...state.p,...p};setInputs(state.p);const a=calc(state.p).out;
+function radarPreview(p){state.p={...state.p,...p};setInputs(state.p);actualizarTarifario();const a=calc(state.p).out;
  for(const [id,v,dp] of [['e2Q',a.toneladas,0],['e2R',a.ingresos_usd/1e6,2],['e2T',a.ticket_usd_t,2]]){const el=document.getElementById(id);if(el)el.innerText=(id==='e2R'?'US$ ':'')+fmt(v,dp)+(id==='e2R'?' M':id==='e2T'?' USD/t':'');}
  return a;}
 window.E2_ECONOMIC_UI={start:boot,getParams:()=>({...state.p}),getVariables:()=>D.variables,
