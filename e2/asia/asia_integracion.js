@@ -18,25 +18,25 @@
   const pJul=logistic(logit(num(r,'prob_usar_juliaca_condicional'))-(ticket-originalTicket)/Math.max(0.1,p.escala_logit_usd_t));
   const accessible=clamp(num(r,'participacion_accesible_hipotetica')*a.factor_mercado_accesible,0,1);
   const hab=clamp(num(r,'habilitacion_legal_operacional')*a.factor_habilitacion,0,1);
-  const factorConciliacion=num(r,'captacion_t')/(num(r,'referencia_proyectada_t')*num(r,'participacion_accesible_hipotetica')*num(r,'prob_pacifico')*num(r,'participacion_puerto')*num(r,'prob_usar_juliaca_condicional')*num(r,'habilitacion_legal_operacional'));
-  const q=num(r,'referencia_proyectada_t')*accessible*pPac*num(r,'participacion_puerto')*pJul*hab*factorConciliacion;
+  // No se calcula captación incremental sin evidencia de rutas, servicios y permisos.
+  const q=0; // No utilizar coeficientes de conciliación retrospectivos.
   rows.push({estado:r.estado,sentido:r.sentido,puerto:r.puerto,q_raw:q,pacifico:pPac,juliaca:pJul,ticket,ingreso_raw:q*ticket});rawQ+=q;rawRev+=q*ticket;
  }
  const available=Math.max(0,capacity-ev.toneladas),k=rawQ>0?Math.min(1,available/rawQ):1;
  const output=rows.map(r=>({...r,toneladas:r.q_raw*k,ingresos_usd:r.ingreso_raw*k}));
  const Q=rawQ*k;const Rv=rawRev*k;
- return {trade2025,trade2028,eligible2028,asia_t:Q,asia_revenue:Rv,asia_ticket:Q?Rv/Q:0,e1:ev,total_t:ev.toneladas+Q,total_revenue:ev.ingresos_usd+Rv,capacity,capacity_used:(ev.toneladas+Q)/capacity,unserved:rawQ-Q,rows:output,raw_t:rawQ,source_t:160346.5804011257};
+ return {trade2025,trade2028,eligible2028,asia_t:Q,asia_revenue:Rv,asia_ticket:Q?Rv/Q:0,e1:ev,total_t:ev.toneladas+Q,total_revenue:ev.ingresos_usd+Rv,capacity,capacity_used:(ev.toneladas+Q)/capacity,unserved:rawQ-Q,rows:output,raw_t:rawQ,source_t:null};
  }
  function panel(prefix,lab){const style=lab?'e2asia-panel e2asia-lab':'e2asia-panel';return `<div class="${style}" id="${prefix}Root">
- <h3>Brasil ↔ Asia vía Perú · escenario condicionado</h3><p>Comercio de Mato Grosso, Rondônia, Amazonas y Acre con China/Japón (2025); participación territorial y de corredor calculada para 2028. No se contabiliza como exportación/importación propia de Perú ni forma parte del central E1.</p>
+ <h3>Brasil ↔ Asia vía Perú · mercado referencial</h3><p>Comercio de Mato Grosso, Rondônia, Amazonas y Acre con China/Japón (2025); participación territorial y de corredor calculada para 2028. No se contabiliza como exportación/importación propia de Perú ni forma parte del central E1.</p>
  <div class="e2asia-controls"><div><label>Mercado accesible · <span id="${prefix}vAcc">1,00×</span></label><input id="${prefix}Acc" type="range" min="0" max="1.5" step="0.05" value="${params.factor_mercado_accesible}"></div>
  <div><label>Preferencia por corredor Pacífico · <span id="${prefix}vPac">1,00×</span></label><input id="${prefix}Pac" type="range" min="0.25" max="2" step="0.05" value="${params.factor_preferencia_pacifico}"></div>
  <div><label>Habilitación operativa relativa · <span id="${prefix}vHab">1,00×</span></label><input id="${prefix}Hab" type="range" min="0" max="1" step="0.05" value="${params.factor_habilitacion}"></div>
  <div><label>Tarifa de servicios relativa · <span id="${prefix}vTar">1,00×</span></label><input id="${prefix}Tar" type="range" min="0.75" max="1.5" step="0.05" value="${params.tarifa_factor}"></div></div>
- <div class="e2asia-metrics"><div class="e2asia-metric"><small>Mercado Brasil–Asia 2025*</small><strong id="${prefix}Market">—</strong></div><div class="e2asia-metric"><small>Captación adicional Brasil–Asia 2028</small><strong id="${prefix}Q">—</strong></div><div class="e2asia-metric"><small>Ingreso adicional por servicios</small><strong id="${prefix}Rev">—</strong></div><div class="e2asia-metric"><small>Captación total E1 + Asia</small><strong id="${prefix}Total">—</strong></div></div>
+ <div class="e2asia-metrics"><div class="e2asia-metric"><small>Mercado Brasil–Asia 2025*</small><strong id="${prefix}Market">—</strong></div><div class="e2asia-metric"><small>Captación adicional validada</small><strong id="${prefix}Q">—</strong></div><div class="e2asia-metric"><small>Ingreso adicional por servicios</small><strong id="${prefix}Rev">—</strong></div><div class="e2asia-metric"><small>Captación total E1 + Asia</small><strong id="${prefix}Total">—</strong></div></div>
  <div id="${prefix}Graph" style="height:245px"></div><label>Mercado por estado</label><select id="${prefix}State"><option value="">Todos los estados</option><option>Mato Grosso</option><option>Rondônia</option><option>Amazonas</option><option>Acre</option></select>
  <div id="${prefix}Rows"></div><button id="${prefix}Export">Descargar desglose CSV</button>
- <p class="e2asia-note">*La referencia 2025 se cuenta una vez por estado y sentido, no por puerto. El caso conserva un coeficiente explícito de conciliación de la fuente (0,82117647) para reproducir la referencia previa de 160.347 t; el componente de elección portuaria procede de hipótesis exploratorias E2; la factura por régimen se aproxima con el ticket del motor E1, sin fichas específicas de productos Brasil–Asia. La capacidad de 450.000 t/año se comparte: primero se atiende el central E1 y después la oportunidad internacional. No existe captación ni habilitación aduanera comprobada.</p></div>`;}
+ <p class="e2asia-note">*El comercio Brasil–Asia es un mercado comercial de referencia, no un flujo verificado por Perú. Se retiró del cálculo el factor de conciliación sin derivación reproducible. Por tanto, la captación adicional y su ingreso permanecen en cero mientras se validan grupos de mercancía, costos puerta a puerta, desvío al Pacífico, competencia portuaria y habilitación legal. Las probabilidades y controles indicativos no equivalen a una demanda aprobada.</p></div>`;}
  function render(prefix){const root=document.getElementById(prefix+'Root');if(!root||!data)return;const calc=compute();last=calc;
  [['Market',fmt(calc.trade2025)+' t'],['Q',fmt(calc.asia_t)+' t'],['Rev','US$ '+fmt(calc.asia_revenue/1e6,2)+' M'],['Total',fmt(calc.total_t)+' t']].forEach(([id,t])=>{root.querySelector('#'+prefix+id).textContent=t});
  const byState={};for(const r of calc.rows){const k=r.estado+'|'+(r.sentido.startsWith('Exportacion')?'Exportación BR':'Importación BR');if(!byState[k])byState[k]={q:0,rev:0};byState[k].q+=r.toneladas;byState[k].rev+=r.ingresos_usd;}
