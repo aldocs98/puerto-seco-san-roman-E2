@@ -1,0 +1,106 @@
+/* Ajuste localizado de contraste · E1/E2 · 05-11-2026.
+   No altera colores de mapas, datos, cálculos, navegación ni estructura original.
+   Las tablas sobre fondos claros no deben heredar el tema oscuro de las tablas E1. */
+
+/* Brasil–Asia: panel analítico claro del laboratorio, incluidas ambas tablas. */
+#e2asiaLabRoot.e2asia-lab label {
+  color: #263e53;
+}
+#e2asiaLabRoot.e2asia-lab .e2asia-table {
+  background: #ffffff;
+  color: #23394c;
+}
+#e2asiaLabRoot.e2asia-lab .e2asia-table thead th {
+  background: #e8eef4;
+  color: #17344b;
+  border-bottom: 1px solid #bac9d6;
+}
+#e2asiaLabRoot.e2asia-lab .e2asia-table tbody td {
+  background: transparent;
+  color: #253b4e;
+  border-bottom: 1px solid #cbd5df;
+}
+#e2asiaLabRoot.e2asia-lab .e2asia-table tbody tr:nth-child(even) {
+  background: #f2f5f8;
+}
+#e2asiaLabRoot.e2asia-lab .e2asia-table tbody tr:hover {
+  background: #fff4cf;
+}
+
+/* Comparadores de competitividad (T*): tarjetas blancas, texto y controles oscuros. */
+#e2TStage .tcard table {
+  background: #ffffff;
+  color: #24374b;
+}
+#e2TStage .tcard table td {
+  color: #24374b;
+}
+#e2TStage .tcard table th {
+  background: #223449;
+  color: #ffffff;
+}
+#e2TStage input,
+#e2TStage select {
+  background: #ffffff;
+  color: #1d3348;
+}
+#e2TStage .tcard label {
+  color: #34465a;
+}
+
+/* Fichas de las 14 cadenas: productos en el panel de fondo claro. */
+#e2fStage .e2fLeft table {
+  background: #ffffff;
+  color: #25394e;
+}
+#e2fStage .e2fLeft table th {
+  background: #253342;
+  color: #ffffff;
+}
+#e2fStage .e2fLeft table td {
+  background: transparent;
+  color: #25394e;
+}
+#e2fStage .e2fLeft table tbody tr:nth-child(even) {
+  background: #f2f5f8;
+}
+
+/* Laboratorio económico: tarifario vivo y sus controles, sin tocar los gráficos. */
+#e2labStage .e2-tarifa-tabla {
+  background: #ffffff;
+  color: #25394e;
+}
+#e2labStage .e2-tarifa-tabla th {
+  background: #253342;
+  color: #ffffff;
+}
+#e2labStage .e2-tarifa-tabla td {
+  color: #25394e;
+  border-bottom-color: #d8e0e7;
+}
+#e2labStage .e2-tarifa-tabla tbody tr:nth-child(even) {
+  background: #eef3f7;
+}
+#e2labStage select,
+#e2labStage input:not([type="range"]) {
+  color: #24374a;
+  background: #ffffff;
+  border-color: #b8c8d5;
+}
+
+/* Elementos claros del mapa E1: leyenda y tablas ocasionales en popups. */
+.gis-legend {
+  color: #243640;
+}
+.leaflet-popup-content table {
+  color: #243640;
+  background: #ffffff;
+}
+.leaflet-popup-content table th {
+  color: #ffffff;
+  background: #344657;
+}
+.leaflet-popup-content table td {
+  color: #243640;
+  background: #ffffff;
+}
